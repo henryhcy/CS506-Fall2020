@@ -11,7 +11,10 @@ def point_avg(points):
     
     Returns a new point which is the center of all the points.
     """
-    raise NotImplementedError()
+    num = len(points)
+    center_sum = sum(points)
+    center_pt = [x/num for x in center_sum]
+    return center_pt
 
 
 def update_centers(dataset, assignments):
@@ -43,7 +46,20 @@ def distance(a, b):
     """
     Returns the Euclidean distance between a and b
     """
-    raise NotImplementedError()
+    if len(a) == 0 or len(b) == 0:
+        raise ValueError("lengths must not be zero")
+    if len(a) != len(b):
+        raise ValueError("lengths must be equal")
+
+    n = len(a) 
+    res_dist = 0
+    for i in range(n):
+        dist = abs(a[i] - b[i])
+        dist_n = dist**n
+        res_dist+=dist_n # sum
+    n_root = 1/(n) # nth root
+    res = res_dist**(n_root)
+    return res
 
 def distance_squared(a, b):
     raise NotImplementedError()
